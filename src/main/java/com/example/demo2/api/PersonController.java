@@ -7,6 +7,7 @@ import com.example.demo2.model.Person;
 import com.example.demo2.service.PersonService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+// import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @RequestMapping("/api/v1/person")
 @RestController
@@ -28,7 +31,7 @@ public class PersonController {
   }
 
   @PostMapping
-  public void addPerson(@RequestBody Person person) {
+  public void addPerson(@Validated @NotNull @RequestBody Person person) {
     personService.addPerson(person);
   }
 
@@ -49,7 +52,7 @@ public class PersonController {
   }
 
   @PutMapping(path = "{id}")
-  public void updatePerson(@PathVariable("id") UUID id, @RequestBody Person personToUpdate) {
+  public void updatePerson(@PathVariable("id") UUID id, @Validated @NotNull @RequestBody Person personToUpdate) {
     personService.updatePerson(id, personToUpdate);
   }
 
