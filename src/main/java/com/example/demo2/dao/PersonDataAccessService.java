@@ -22,12 +22,11 @@ public class PersonDataAccessService implements PersonDao {
 
   @Override
   public int insertPerson(UUID id, Person person) {
-    jdbcTemplate.update(
+    return jdbcTemplate.update(
       "INSERT INTO person (id,name) VALUES(?,?) "
       ,id
       ,person.getName()
     );
-    return 0;
   }
 
   @Override
@@ -62,7 +61,10 @@ public class PersonDataAccessService implements PersonDao {
 
   @Override
   public int updatePersonById(UUID id, Person person) {
-    // TODO Auto-generated method stub
-    return 0;
+    return jdbcTemplate.update(
+      "UPDATE person SET name = ? WHERE id = ?"
+      ,person.getName()
+      ,id
+    );
   }
 }
