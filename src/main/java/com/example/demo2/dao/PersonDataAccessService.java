@@ -55,8 +55,10 @@ public class PersonDataAccessService implements PersonDao {
 
   @Override
   public int deletePersonById(UUID id) {
-    // TODO Auto-generated method stub
-    return 0;
+    return jdbcTemplate.update(
+      "DELETE FROM person WHERE id = ?"
+      ,id
+    );
   }
 
   @Override
