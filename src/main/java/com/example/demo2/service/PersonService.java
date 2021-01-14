@@ -4,6 +4,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.example.demo2.dao.PersonDao;
+import com.example.demo2.dao.PersonDaoMapper;
 import com.example.demo2.model.Person;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +14,18 @@ import org.springframework.stereotype.Service;
 @Service
 public class PersonService {
 
-  private final PersonDao personDao;
+  // private final PersonDao personDao;
+  private final PersonDaoMapper personDao;
 
   @Autowired
-  public PersonService(@Qualifier("postgress") PersonDao personDao) {
+  // public PersonService(@Qualifier("postgress") PersonDaoMapper personDao) {
+  public PersonService(@Qualifier("mybaitis") PersonDaoMapper personDao) {
     this.personDao = personDao;
   }
 
   public int addPerson(Person person) {
-    return personDao.insertPerson(person);
+    UUID id = UUID.randomUUID();
+    return personDao.insertPerson(id, person);
   }
 
   public List<Person> getAllPeople() {

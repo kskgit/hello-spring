@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- <mapper> -->
+<mapper namespace="com.example.demo2.dao.PersonDaoMapper">
+    <!-- <resultMap type="com.example.demo2.model.Person" id="person">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+    </resultMap> -->
+
+    <insert
+      id="insertPerson"
+      parameterType="com.example.demo2.model.Person">
+      INSERT INTO person (
+        id,
+        name)
+      VALUES (
+        #{personId},
+        #{personName.name})
+    </insert>
+
+</mapper>
